@@ -1,27 +1,32 @@
 from aiogram import Router, types
 from aiogram.filters import Command
-from aiogram.types import InlineKeyboardMarkup
 
 start_router = Router()
 
 @start_router.message(Command('start'))
 async def start_handler(message: types.Message):
-    await message.answer(f'Здравствуйте! {message.from_user.first_name}')
-    kb = types.InlineKeyboardMarkup(
+    name = message.from_user.first_name
+    msg = f'Привет {name}'
+    await message.answer(msg)
+    # await bot.send_message(
+    #     chat_id = message.from_user.id,
+    #     text = msg,
+    )
+
+
+kb = types.InlineKeyboardMarkup(
         inline_keyboard=[
             [
                 types.InlineKeyboardButton(
-                    text = 'Наш инстаграм профиль',
-                    url = 'https://instagram.com/geeks_studio'
+                    text="Наш инстаргам",
+                    url="https://instagram.com/geeks"
                 )
             ],
             [
                 types.InlineKeyboardButton(
-                text='Наш сайт',
-                url='https://instagram.com/geeks_junior'
-
-               )
+                    text="Наш сайт",
+                    url="https://geeks.kg"
+                )
             ]
         ]
     )
-    await message.answer(msg, reply_markup = kb)
