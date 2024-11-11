@@ -1,18 +1,6 @@
 from aiogram import Router, types
 from aiogram.filters import Command
 
-start_router = Router()
-
-@start_router.message(Command('start'))
-async def start_handler(message: types.Message):
-    name = message.from_user.first_name
-    msg = f'Привет {name}'
-    await message.answer(msg)
-    # await bot.send_message(
-    #     chat_id = message.from_user.id,
-    #     text = msg,
-    )
-
 
 kb = types.InlineKeyboardMarkup(
         inline_keyboard=[
@@ -30,3 +18,15 @@ kb = types.InlineKeyboardMarkup(
             ]
         ]
     )
+
+
+start_router = Router()
+
+@start_router.message(Command('start'))
+async def start_handler(message: types.Message):
+    name = message.from_user.first_name
+    await message.answer(f'Привет {name}',reply_markup=kb)
+
+
+
+

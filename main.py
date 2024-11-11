@@ -12,9 +12,7 @@ dp = Dispatcher()
 
 
 
-@dp.message(Command('start'))
-async def start_handler(message: types.Message):
-    await message.answer(f'Здравствуйте! {message.from_user.first_name}')
+
 
 
 
